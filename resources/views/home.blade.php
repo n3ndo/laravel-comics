@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layout.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    @vite('resources/js/app.js')
-
-</head>
-
-<body>
-
-    @include('partials.header')
-
+@section('home-content')
     <main>
         <div class="top-main">
             <div class="jumbotron">
@@ -31,7 +13,7 @@
                     <div class="comics-container py-5">
                         @foreach ($comics as $comic)
                             <div class="comics-card">
-                                <a href="#">
+                                <a href="{{ route('detail', ['param' => $comic['id']])}}">
                                     <img class="img-fluid" src="{{ $comic['thumb'] }}" alt="">
                                     <h3>{{ $comic['series'] }}</h3>
                                 </a>
@@ -57,7 +39,5 @@
         </div>
     </main>
 
-    @include('partials.footer')
-</body>
 
-</html>
+    @endsection

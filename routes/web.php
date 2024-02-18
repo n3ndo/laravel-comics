@@ -17,3 +17,15 @@ Route::get('/', function () {
     $comics = config('comics');
     return view('home', compact('comics'));
 })->name('homepage');
+
+Route::get('/home/{param}', function ($param) {
+    $comics = config('comics');
+    
+    $comic = null;
+    foreach ($comics as $item) {
+        if ($item['id'] == $param) {
+            $comic = $item;
+        }
+    }
+        return view('detail', compact('comic'));
+})->name('detail');
